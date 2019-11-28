@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hbuilder使用教程</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+<meta name="description" content="JAVA_李伟杰_itdage.cn_IT大哥_笔记_视频_学JAVA_zaixianke.com" />
+<meta name="keywords" content="JAVA_李伟杰_itdage.cn_IT大哥_笔记_视频_学JAVA_zaixianke.com" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maxinum-scale=1">
+<link rel="stylesheet" type="text/css" href="https://itdage.cn/css/gg1.css">
+<link rel="stylesheet" type="text/css" href="https://itdage.cn/css/gg2.css">
+<script src="https://itdage.cn/js/jquery.js"></script>
+<script src="https://itdage.cn/js/gg1.js"></script>
+<script src="https://itdage.cn/js/gg2.js"></script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function() {
+    // 生成目录列表
+    var details = document.createElement("details");
+    var p = document.createElement("p");
+	details.innerHTML = "<summary>笔记索引</summary>";   
+	details.appendChild(p);
+    var toc = document.createElement("ul");
+    p.appendChild(toc);
+    toc.setAttribute("id", "table-of-content");
+    toc.style.cssText = "border: 1px solid #ccc;";
+    document.body.insertBefore(details, document.body.childNodes[0]);
+    // 用于计算当前标题层级的栈,先进先出,从左到右每一个元素代表当前标题所在的层级索引，初始为空
+    var stack = new Array();
+    // 获取所有标题(h2-h6)
+    var headers = document.querySelectorAll('h1,h2,h3,h4,h5,h6');
+    for (var i = 0; i < headers.length; i++) {
+        var header = headers[i];
+        // 计算标题级数，为后面计算标号及缩进空格准备
+        var level = parseInt(header.tagName.replace('H', ''), 10);
+        // 通过两个where循环对栈进行调整,确保stack中标题级数与当前标题级数相同
+        while(stack.length < level){
+        	stack.push(0);
+        }
+        while(stack.length > level){
+        	stack.pop();
+        }
+        // 最小一级标题标号步进+1
+        stack[stack.length-1]++;
+        // 生成标题标号( 1.1,1.2.. )
+        var index = stack.join(".")
+        // 生成标题ID
+        var id = "title" + index;
+        header.setAttribute("id", id);
+        toc.appendChild(document.createElement("li"));
+        var a = document.createElement("a");
+        // 为目录项设置链接
+        a.setAttribute("href", "#" + id)
+        // 目录项文本前面放置缩进空格
+        a.innerHTML = new Array(level * 4).join('&nbsp;') + index+'&nbsp;'+header.textContent;
+        toc.lastChild.appendChild(a);
+    }
+});
+</script>
+</head>
+<body>
+<article class="markdown-body">
+<h1>HBuilderX 入门教程</h1>
+<blockquote>
+<p>HX是轻量编辑器和强大IDE的完美结合体。敏捷的性能，清爽的界面，强大的功能和于一身。  </p>
+</blockquote>
+<p><strong>本文档面向入门用户，建议初学者仔细研读。</strong>  </p>
+<p><a href="https://download.dcloud.net.cn/HBuilderX.2.4.2.20191115.zip" target="_blank">HBuilderX 2.4.2下载</a><br>
+<a href="https://www.dcloud.io" target="_blank">HBuilderX官网</a></p>
+
+<h3>介绍</h3>
+<ol><li>执着于更快一步的理念，hx的左侧项目管理器是单击响应而不是双击。  </li>
+<li>单击展开目录，单击预览文件，双击打开文件。  </li>
+<li>预览文件时顶部标签卡是斜体的，此时继续预览其他文件会替换预览标签卡。双击文件后标签卡为正体，不会被替换。预览的文件一旦开始编辑，也会自动变为正式打开状态。<br><img src="http://update.dcloud.net.cn/hbuilderx/doc/HBuilderX%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/files/2018.png" alt="预览文件" style="display: inline;"></li>
+<li>项目管理器默认是不显示图标的，可以将鼠标移到项目管理器区域，右上角会悬浮菜单，在里面可以选择显示图标。HBuilderX支持业内多种图标插件，可以在工具-插件安装中找到更多图标插件。  </li>
+<li>hx的文件保存是免丢失的，并且有热退出功能。所谓热退出，就是关闭hx时不要保存文件。再次打开时仍然是之前的状态。未保存的文件也会继续原样展现。  </li>
+<li>hx默认带有每30秒保存一次临时文件的策略（可以在设置里调节时间间隔）  </li>
+<li>不管是关闭hx，还是断电、崩溃，临时文件始终会自动保存。  </li>
+<li>前端预编译型语言越来越多，每次保存都触发编译比较消耗资源，有了hx，可以专注写代码而不需要隔一会按一下ctrl+s，需要编译时再保存，或编辑多个文件后按ctrl+alt+s全部保存。  </li>
+</ol><h3>语法提示</h3>
+<p>拥有自研的世界级语法分析引擎一直是HBuilder系列产品傲视业内的资本。<br>
+但前端框架众多，框架的语法提示需要加载单独的语法提示库。  </p>
+<p>框架语法提示库是在页面的右下角选择。（如下图示例）  </p>
+<p><img src="http://update.dcloud.net.cn/hbuilderx/doc/HBuilderX%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/files/15.gif" alt="选择语法提示框" style="display: inline;"></p>
+<p><strong>注意</strong>：  </p>
+<ol><li>框架语法库是挂在项目下的，一个项目加载了一个框架语法库后，这个项目下所有js文件或HTML文件都会在代码助手提示这个框架的语法。  </li>
+<li>但如果一个文件是单独从硬盘打开，没有整项目拖入hx，那么此时无法加载框架语法库。  </li>
+</ol><h3>代码助手</h3>
+<hr><p>hx的代码助手，可以按alt+数字选择直接选择某个项目，类似中文输入法数字选词 （如下图示例）  </p>
+<p><img src="http://update.dcloud.net.cn/hbuilderx/doc/HBuilderX%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/files/14.gif" alt="选词" style="display: inline;"></p>
+<h3>语法帮助</h3>
+<hr><p>光标放到某api处，按下F1，就可跳转到这个api的官方手册。目前支持vue、uni-app、5+等api （如下图示例）  </p>
+<p><img src="http://update.dcloud.net.cn/hbuilderx/doc/HBuilderX%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/files/13.gif" alt="F1_api" style="display: inline;"></p>
+<h3>编辑器与项目管理器的同步</h3>
+<hr><p>hx默认是打开的标签卡和项目管理器自动关联，切换标签卡时项目管理器也会跟随变化，如不需要此功能，可以将鼠标移到项目管理器区域，右上角会悬浮菜单，在里面可以取消“与编辑器同步”。（如下图示例）  </p>
+<p><img src="http://update.dcloud.net.cn/hbuilderx/doc/HBuilderX%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/files/4.jpg" alt="编辑器同步" style="display: inline;"></p>
+<p>一般多项目时建议取消同步功能。  </p>
+<p>取消同步后，如需手动定位标签卡所在的项目，可以对编辑器点右键-“在项目管理器中定位”。（如下图示例）  </p>
+<p><img src="http://update.dcloud.net.cn/hbuilderx/doc/HBuilderX%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/files/12.gif" alt="项目管理器定位" style="display: inline;"></p>
+<h3>多光标</h3>
+<hr><p>hx支持多光标，按 ctrl+鼠标左键 就可增加一个光标，ctrl+鼠标右键 可取消一个光标或选区。（如下图示例）  </p>
+<p><img src="http://update.dcloud.net.cn/hbuilderx/doc/HBuilderX%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/files/10.gif" alt="多光标" style="display: inline;"></p>
+<p>还可以选择相同词。ctrl+e (mac是cmd+d)可选中相同的词做批处理。（如下图示例）  </p>
+<p><img src="http://update.dcloud.net.cn/hbuilderx/doc/HBuilderX%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/files/11.gif" alt="选择相同词" style="display: inline;"></p>
+<p>多光标是极客必备工具，高级技巧请参考：<a href="https://ask.dcloud.net.cn/docs/#//ask.dcloud.net.cn/article/13191" target="_blank">https://ask.dcloud.net.cn/docs/#//ask.dcloud.net.cn/article/13191</a>  </p>
+<h3>列选择</h3>
+<hr><p>hx的列选择，是alt+鼠标拖选。或者用快捷键ctrl+alt+↑或↓。（如下图示例）  </p>
+<p><img src="http://update.dcloud.net.cn/hbuilderx/doc/HBuilderX%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/files/9.gif" alt="列选择" style="display: inline;"></p>
+<h3>着色高亮</h3>
+<hr><p>当你打开一个不认识的文档时，即hx的无法高亮着色，可以在右下角选择使用其他编辑器打开。  </p>
+<p>当你打开一个文件编码错乱，产生乱码时，也可以在右下角选择编码重新打开。（如下图示例）  </p>
+<p><img src="http://update.dcloud.net.cn/hbuilderx/doc/HBuilderX%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/files/8.gif" alt="编码" style="display: inline;"></p>
+<h3>文件快速打开</h3>
+<hr><p>在顶部工具栏直接搜索工程下的文件名并打开，或者使用快捷键ctrl+p。（如下图示例）  </p>
+<p><img src="http://update.dcloud.net.cn/hbuilderx/doc/HBuilderX%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/files/6.gif" alt="搜索文件" style="display: inline;"></p>
+<p>比较常用的文件，可以在工具栏里添加到收藏夹。（如下图示例）  </p>
+<p><img src="http://update.dcloud.net.cn/hbuilderx/doc/HBuilderX%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/files/7.gif" alt="收藏文件" style="display: inline;"></p>
+<p>ctrl+p也是标签卡管理的重要工具，屏幕窄看不清左右打开的标签时，可以用它来浏览所有以打开的标签  </p>
+<h3>目录内搜索</h3>
+<hr><p>项目管理器点右键，选：查找字符串(当前目录)，可在该目录下所有文件中搜索字符串（如下图示例）  </p>
+<p><img src="http://update.dcloud.net.cn/hbuilderx/doc/HBuilderX%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/files/4.gif" alt="按目录查找字符串" style="display: inline;"></p>
+<h3>缩进调整</h3>
+<hr><p>hx默认使用tab缩进，tab长度为4个空格。  </p>
+<p>如果你需要调整缩进长度，比如tab长度为2个空格，在工具设置-编辑器中调整。（如下图示例）  </p>
+<p><img src="http://update.dcloud.net.cn/hbuilderx/doc/HBuilderX%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/files/5.gif" alt="调整缩进示例" style="display: inline;"></p>
+<p>如果不喜欢使用tab而喜欢使用空格，也可以在设置中调。注意这个调节只是编辑器里敲tab按键时转为了空格，格式化时仍是tab。  </p>
+<p>调节格式化设置，参考菜单工具-插件配置。hx支持几种格式化插件，他们都有自己的配置定义文件，请按插件配置中的说明修改设置。（如下图示例）  </p>
+<p><img src="http://update.dcloud.net.cn/hbuilderx/doc/HBuilderX%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/files/2.jpg" alt="格式化插件" style="display: inline;"></p>
+<p>比如格式化插件Formator-Prettier，它的配置文件为：【工具】【插件配置】【formator-frettier】【formator.config.js】（如下图示例）  </p>
+<p><img src="http://update.dcloud.net.cn/hbuilderx/doc/HBuilderX%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/files/3.jpg" alt="Formator-Prettier" style="display: inline;"></p>
+<p>在菜单编辑-缩进中，可文件的缩进从tab转空格或从空格转tab。  </p>
+<h3>语法校验</h3>
+<hr><p>hx的语法校验都是插件，在工具插件安装中选择各种校验插件，不同语言的校验插件不一样。安装校验插件后，保存文件时会自动执行语法校验。（如下图示例）  </p>
+<p><img src="http://update.dcloud.net.cn/hbuilderx/doc/HBuilderX%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/files/1.png" alt="语法插件" style="display: inline;"></p>
+<p>校验概要结果会显示在状态栏，比如有2个错误（如下图），可以按F4切换到不同的错误处，画有红波浪线（如下图），鼠标移到红波浪线上会显示具体的错误信息。（如下图示例）  </p>
+<p><img src="http://update.dcloud.net.cn/hbuilderx/doc/HBuilderX%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/files/1.jpg" alt="例子" style="display: inline;"></p>
+<p>你也可以不保存，直接点菜单工具-验证本文档校验语法 来进行校验。（如下图示例）  </p>
+<p><img src="http://update.dcloud.net.cn/hbuilderx/doc/HBuilderX%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/files/3.gif" alt="验证本文档语法" style="display: inline;"></p>
+<h3>svn/git项目导入</h3>
+<hr><p>以git为例：（git项目：需要安装git插件、以及TortoiseGit、并配置ssh秘钥）（如下图示例）  </p>
+<p><img src="http://update.dcloud.net.cn/hbuilderx/doc/HBuilderX%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/files/2.gif" alt="导入git项目" style="display: inline;"></p>
+</article>
+</body>
+</html>
