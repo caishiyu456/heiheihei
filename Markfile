@@ -1,0 +1,8 @@
+# this is make file
+hello.out :max.o min.o a8.c
+	gcc max.o min.o a8.c
+max.o:max.c
+	gcc -c max.c
+min.o:min.o
+	gcc -c min.c
+	
