@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>哈哈的网页</title>
+    <script>
+        //数组去重,删除零
+        var arr =[2,0,6,1,77,0,52,0,25,7];
+        for (var a =0;a<arr.length ;a++){
+            if(arr[a] == 0){
+
+                /*arr[a] =arr[a+1];*/
+                arr.splice(a,1);
+                /*a++;*/
+               /* arr.length --;*/
+            }
+        }
+        alert (arr);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

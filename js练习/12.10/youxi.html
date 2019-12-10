@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <style>
+        #back {
+            height: 500px;
+            width: 500px;
+            background: aliceblue;
+            position: relative;
+        }
+
+        #ball {
+            width: 30px;
+            height: 30px;
+            background: green;
+            border-radius: 100%;
+            position: absolute;
+        }
+
+        #board {
+            height: 30px;
+            width: 60px;
+            background: aqua;
+            position:absolute;
+        }
+
+        #score {
+            height: 50px;
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+<div id="back">
+    <div id="score">0分</div>
+    <div id="ball" style="top:0;left:0"></div>
+    <div id="board"></div>
+</div>
+</body>
+<script>
+    var ball = document.getElementById("ball");
+    var board = document.getElementById("board");
+    var back = document.getElementById("back");
+    var score = document.getElementById("score");
+
+    //小球的位置
+    ball.init=function(){
+        this.style.top=0;
+        this.style.left=0;
+    }
+
+    //转向
+    ball.runX = function(){
+        this.speedX = - this.speedX;
+    };
+
+    ball.runY = function(){
+        this.speedY = - this.speedY;
+    };
+
+    ball.speedX = 5;
+    ball.speedY = 3;
+    ball.status = 1;
+
+    ball.run=function(){
+        this.style.left = parseInt(this.style.left) + this.speedX + "px";
+        this.style.top  = parseInt(this.style.top) +this.speedY + "px";
+        //判断小球相撞
+        this.check(parseInt(this.style.left),parseInt(this.style.top));
+    };
+
+    var hand = setInterval(()=>{
+        ball.run();
+    },10);
+
+    back.onmousemove=function(e){
+        board.style.top = e.pageY -15 + "px";
+        board.style.left = e.pageX -30 + "px";
+    };
+
+    ball.check=function(x,y){
+        if(x<=0 || x + 30>=500){
+            this.runX();
+        }
+
+        if(y <= 0){
+            ball.status = 1;
+            this.runY();
+        }
+
+        if(y+30>= 500){
+            alert("game over");
+            clearInterval(hand);
+        }
+
+        if(x >= parseInt(board.style.left) && x <= parseInt(board.style.left) + 60 && y+30 >= parseInt(board.style.top) && y+30 <= parseInt(board.style.top) + 30){
+            if(ball.status == 1){
+                ball.runY();
+                ball.status = -1;
+                score.innerHTML  =  parseInt(score.innerHTML)  + 10 + "分";
+            }
+
+        }
+
+    }
+
+
+</script>
+</html>

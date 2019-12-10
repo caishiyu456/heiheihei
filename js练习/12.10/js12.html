@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>哈哈的网页</title>
+    <!--接收用户输入的用户名和密码 , 若用户名为'admin' , 密码为'123456'
+,则提示用户登录成功 ! 否则一直让用户输入 ;-->
+    <script>
+        /*a为userName , b 为 password*/
+        /*var a = prompt('请输入账号');
+        var b = prompt('请输入密码');
+        while(1){
+            if(a === 'admin' && b === '123456'){
+                alert('登陆成功');
+            }else{
+                alert('');
+            }
+        }*/
+        var a, b;
+        do{
+             /*var*/ a = prompt('请输入账号');
+             /*var*/ b = prompt('请输入密码');
+        }while(a !== 'admin' && b !=='123456');
+        alert('登陆成功');
+    </script>
+</head>
+<body>
+
+</body>
+</html>

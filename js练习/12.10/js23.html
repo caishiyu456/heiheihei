@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>哈哈的网页</title>
+    <script>
+        //冒泡排序
+        var arr =[1,5,6,7,2,3,8,9,4,6,5,12];
+        var a ,b;
+        for(a=1;a<arr.length;a++) {
+            for(b=arr.length-a-1;b>0;b--){
+                var temp =0;
+                if(arr[b]>arr[b+1]){
+
+                     temp =arr[b+1];
+                    arr[b+1] = arr[b];
+                    arr[b] = temp;
+                }
+            }
+        }
+        alert(arr);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
