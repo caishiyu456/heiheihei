@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>哈哈的网页</title>
+
+</head>
+<body>
+
+</body>
+<script>
+    var b ='';
+    //循环打印1到50之间的数,当到10的倍数时换行
+    for(var a =1;a<=50;a++){
+        if(a<10){
+            b += '0' +a+'\t';
+        }else if(a%10 == 1){
+            b +='\n'+a +'\t';
+        }else {
+            b += a + '\t';
+        }
+    }
+    alert(b);
+</script>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>哈哈的网页</title>
+
+</head>
+<body>
+
+</body>
+<script>
+    var a = prompt('请输入表格行数');
+    var b = prompt('请输入表格列数');
+
+    //使用for循环打印表格
+    document.write('<table width = 600px height = 500px border = 1 align=center cellspacing=0 cellpadding = 0>');
+    for (var c =1 ;c <=a ; c++) {
+        document.write('<tr>');
+        for (var d = 1; d <= b; d++) {
+
+            document.write('<td></td>');
+        }
+        document.write('</tr>');
+    }
+    document.write('</table>');
+</script>
+</html>

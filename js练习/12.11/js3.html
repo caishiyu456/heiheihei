@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>哈哈的网页</title>
+
+</head>
+<body>
+
+</body>
+<script>
+    //打印1到50之间的数逢十进一
+    var a ;
+    var b,d ;
+    var c ='' ;
+    for (a =0;a<5;a++){
+        for(b =1 ; b<=10;b++){
+            if(b == 10 ){
+                d=(a+1)*b;
+                c += ''  +d +'\t\t' ;
+            }else if(b<10){
+            c += '' +a + b +'\t\t' ;
+            }
+        }c +='\n';
+    }
+    /*alert(c);*/
+    console.log(c);
+</script>
+</html>
