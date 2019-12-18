@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<!--
+		轮播图特效原理分析：
+			1. 页面布局
+				容器 		 定位 相对定位
+					图片 		定位：绝对定位
+					左右箭头 	定位：绝对定位
+					圆点列表	定位：绝对定位
+
+			2. 轮播图的逻辑运行原理
+				轮播图：轮显 ： 轮着显示
+					有一张进行显示，其他的都是隐藏的
+
+					约定：li身上有类名active，进行显示
+					将active类名移动到指定的元素身上，那么当前的元素就会显示
+					将active类名从某个元素身上移除，那么该元素就会隐藏
+
+					圆点列表是跟随图片一起运动的
+
+	-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>哈哈的网页</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        img{
+            /* 设置图片以块状元素的形式存在，解决3pxBug问题 */
+            display: block;
+        }
+        /* 容器的大小 = 轮播图图片的大小 */
+        #lun{
+            width: 790px;
+            height: 340px;
+            border: 1px solid #CCC;
+            margin: 0 auto;
+            margin-top: 120px;
+            position: relative;
+
+            /* 设置鼠标样式 */
+            cursor: pointer;
+        }
+        #lun>ul>li{
+            position: absolute;
+
+            /* 隐藏掉所有的元素 */
+            display: none;
+        }
+        #lun>ul>li.active{
+            display: block;
+        }
+        #circle-list{
+            width: 180px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            /*background: red;*/
+
+            /* 参考元素：一定是父级元素 */
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+
+            /* 让元素自身向左平移(自身宽度的一半),元素恰好在水平方向居中 */
+            margin-left: -90px;
+            border-radius: 10px;
+        }
+        #circle-list>ul{
+            width: 100%;
+            height: 100%;
+            /* 弹性盒子 */
+            display: flex;
+
+            /* 垂直方向-居中 */
+            align-items: center;
+
+            /* 水平方向元素平均分布 */
+            justify-content: space-around;
+        }
+        #circle-list>ul>li{
+            width: 12px;
+            height: 12px;
+            background: #FFF;
+            border-radius: 50%;
+        }
+        #circle-list>ul>li.active-list{
+            background: #DB192A;
+        }
+        #lun>.arrow{
+            width: 30px;
+            height: 60px;
+            background: rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 50%;
+            margin-top: -30px;
+            font-size: 20px;
+            font-family: 宋体;
+            font-weight: bold;
+            color: #FFF;
+            text-align: center;
+            line-height: 60px;
+
+            /* 禁止用户选中的文字 */
+            user-select: none;
+        }
+        #lun>.arrow:hover{
+            background: rgba(0, 0, 0, 0.4);
+        }
+        #lun>#left{
+            left: 0;
+        }
+        #lun>#right{
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+
+
+<!-- 定义轮播图的容器 -->
+<div id="lun">
+    <!-- 图片列表 -->
+    <ul>
+        <li class="active"><img src="./images/1.jpg" alt=""></li>
+        <li><img src="./images/2.jpg" alt=""></li>
+        <li><img src="./images/3.jpg" alt=""></li>
+        <li><img src="./images/4.jpg" alt=""></li>
+
+        <li><img src="./images/5.jpg" alt=""></li>
+        <li><img src="./images/6.jpg" alt=""></li>
+        <li><img src="./images/7.jpg" alt=""></li>
+        <li><img src="./images/8.jpg" alt=""></li>
+    </ul>
+
+    <!-- 定义底部的圆点列表 -->
+    <div id="circle-list">
+        <ul>
+            <li class="active-list"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <!-- 定义左右的箭头 -->
+    <div id="left" class="arrow"><</div>
+    <div id="right" class="arrow">></div>
+</div>
+</body>
+<script>
+    // 获取元素
+    var lun = document.getElementById('lun');
+    var circleList = document.getElementById('circle-list');
+
+    // 获取左右箭头
+    var left = document.getElementById('left');
+    var right = document.getElementById('right');
+
+    // .children 元素查找的方式，找该元素的所有子元素,返回的是一个类数组
+    var lis = lun.children[0].children;
+
+    // 获取圆点列表
+    var cLis = circleList.children[0].children;
+
+    // 获取li的长度
+    var len = lis.length;
+    console.log(cLis);
+
+    // 控制元素类名active添加和移出
+    // removeAttribute() 移出属性
+    // lis[0].removeAttribute('class');
+
+    // 添加属性
+    // lis[1].setAttribute('class', 'active');
+
+    // 设置标志index,标志那个li是显示,index的值对应li的索引
+    var index = 0;
+
+    // 定义轮播图的标志
+    var run;
+
+    // 将轮播图轮显封装函数
+    function autoRun () {
+        // 轮播图每2s轮显一次 --- 周期性定时器 setInterval()
+        run = setInterval(function () {
+            // 让当前显示的元素隐藏
+            lis[index].removeAttribute('class');
+            // 当前圆点列表样式取消
+            cLis[index].removeAttribute('class');
+
+            // 下一张,索引+1
+            index++;
+
+            // index的值临界点判断 -- 最大值
+            // console.log(index);
+            if (index == lis.length) {
+                // 切换到第一张--索引0
+                index = 0;
+            }
+
+            // 让下一张显示
+            lis[index].setAttribute('class', 'active');
+            // 下一个圆点列表样式添加
+            cLis[index].setAttribute('class', 'active-list');
+        }, 2000)
+    }
+
+    // 页面进入时，轮播图调用
+    autoRun();
+
+    // 设置容器的鼠标移入和移出事件
+    lun.onmouseenter = function () {
+        // console.log('鼠标进来了...');
+        // 终止轮播 -- 停止定时器
+        clearInterval(run);
+
+        // 移入了
+        // console.log(111);
+    }
+    lun.onmouseleave = function () {
+        // console.log('鼠标出去了...');
+        // 轮播图再次启动
+        autoRun();
+
+        // 移出
+        // console.log(222)
+    }
+
+    // 当鼠标移入圆点列表时，切换对应的图片显示
+    for (var i = 0; i < cLis.length; i++) {
+        // 每一个元素的鼠标移入事件
+        cLis[i].onmouseover = (function (i) {
+            // 切换显示 -- 我是谁，我是第几个元素
+            return function () {
+                // console.log('我是--' + i);
+
+                // 之前显示的隐藏 -- index
+                lis[index].removeAttribute('class');
+                cLis[index].removeAttribute('class');
+
+                // 当前的显示
+                index = i;
+
+                // 显示
+                lis[i].setAttribute('class', 'active');
+                cLis[i].setAttribute('class', 'active-list');
+            }
+        })(i)
+    }
+
+    /*
+        鼠标移入和移出事件：
+            第一组
+                特点：阻止冒泡
+                onmouseenter	鼠标移入
+                onmouseleave	鼠标移出
+
+            第二组
+                特点：有冒泡
+                onmouseover 	鼠标移入
+                onmouseout 		鼠标移出
+
+
+            冒泡事件：子元素触发某个类型的事件后，该元素的父级以及先辈元素触发同类型的事件
+     */
+
+    // 左箭头单击事件
+    left.onclick = function () {
+        // 当前显示的元素隐藏
+        lis[index].removeAttribute('class');
+        cLis[index].removeAttribute('class');
+
+        // 索引-1
+        index--;
+
+        // 最小值的判断
+        if (index < 0 ) {
+            // 最后一张的索引
+            index = lis.length - 1;
+        }
+
+        // 上一张显示
+        lis[index].setAttribute('class', 'active');
+        cLis[index].setAttribute('class', 'active-list');
+    }
+
+    // 右箭头单击事件
+    right.onclick = function () {
+        // 当前隐藏
+        lis[index].removeAttribute('class');
+        cLis[index].removeAttribute('class');
+
+        // 下一张显示
+        index++;
+
+        // 最大值的判断
+        if (index == lis.length) {
+            index = 0;
+        }
+
+        // 显示
+        lis[index].setAttribute('class', 'active');
+        cLis[index].setAttribute('class', 'active-list');
+    }
+
+</script>
+</html>

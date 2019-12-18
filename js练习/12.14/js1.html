@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>哈哈的网页</title>
+    <style>
+        *{
+            margin :0;
+            padding: 0;
+        }
+        #linbu{
+            width:400px;
+            height:400px;
+            border:1px;
+            solid-color: #FFF;
+            margin:0 auto ;
+            margin-top: 130px;
+        }
+        li{
+            list-style: none ;
+        }
+        img{/*设置图片以块状元素形式存在*/
+            display: block;
+        }
+        #linbu>ul>li{/*使用该步骤将所有图片定位到一个地方*/
+            position: absolute;
+            display: none;
+        }
+        #linbu>ul>li.a{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id = "linbu">
+    <ul>
+        <li><img src="./images/1.gif" alt=""></li>
+        <li><img src="./images/2.gif" alt=""></li>
+        <li><img src="./images/3.gif" alt=""></li>
+        <li><img src="./images/4.gif" alt=""></li>
+
+    </ul>
+</div>
+</body>
+
+</html>
